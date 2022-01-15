@@ -66,4 +66,4 @@ You should now be able to acess the webapp through `localhost:8000` or `127.0.0.
 
 ## Contributing
 
-All kinds of contributions are welcome, if you would like to improve the code make a pull request
+All kinds of contributions are welcome, if you would like to improve the code feel free to make a pull request
