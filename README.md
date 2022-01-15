@@ -1,4 +1,4 @@
-# WaypointTranslator
+# Waypoint Translator
 
 ![GitHub contributors](https://img.shields.io/github/contributors/Sadeeed/WaypointTranslator?style=flat)
 
@@ -60,7 +60,7 @@ python manage.py runserver
 
 You should now be able to acess the webapp through `localhost:8000` or `127.0.0.1:8000/`
 
-## Demo
+## Screenshots
 
 ![Screenshot](https://i.imgur.com/k4h5CQH.png)
 
