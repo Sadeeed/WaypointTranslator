@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} VoxelMap to Xaeros {% endblock %}
+
+{% block content %}
+    <div class="mask d-flex align-items-center min-vh-100">
+        <div class="container h-300">
+            <div class="row d-flex justify-content-center align-items-center h-300">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px; background-color: #202020">
+                        <div class="card-body p-5" style="color: #FFFFFF;">
+                            <h2 class="text-center mb-5" style="color: #FFFFFF;">VoxelMap to Xaeros Minimap</h2>
+                            <p class="text-center">Upload VoxelMap coordinates</p>
+                            <form id="form-import" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <div class="alert alert-danger">
+                                                <strong>{{ error|escape }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                <div class="form-inline" style="text-align: center; margin-top: 10px">
+                                    {{ form.file }}
+                                </div>
+
+                                <div class="form-inline" style="text-align: center; margin-top: 10px">
+                                    <button id="import_button" type="submit" class="btn btn-primary">Upload</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
