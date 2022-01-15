@@ -10,8 +10,8 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                     <div class="card" style="border-radius: 15px; background-color: #202020">
                         <div class="card-body p-5" style="color: #FFFFFF;">
-                            <h2 class="text-center mb-5" style="color: #FFFFFF;">VoxelMap to Xaeros Minimap</h2>
-                            <p class="text-center">Upload VoxelMap coordinates</p>
+                            <h3 class="text-center mb-5" style="color: #FFFFFF;">Convert Voxel Map Waypoints to Xaero's Minimap Format</h3>
+                            <p class="text-center">Upload your Voxel Map .points file</p>
                             <form id="form-import" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 {% if form.errors %}
