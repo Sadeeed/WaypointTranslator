@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} VoxelMap to Xaeros {% endblock %}
+
+{% block content %}
+    <div class="mask d-flex align-items-center min-vh-100">
+        <div class="container h-300">
+            <div class="row d-flex justify-content-center align-items-center h-300">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px; background-color: #202020">
+                        <div class="card-body p-5" style="color: #FFFFFF;">
+                            <h3 class="text-center mb-5" style="color: #FFFFFF;">Instructions</h3>
+                            <ul>
+                                <li>Find your VoxelMap .points file usually located at <code>.minecraft/voxelmap/&lt;server-name-ip&gt;.points</code> </li>
+                                <li>Upload the file <a href="{% url 'voxel_to_xaero' %}">here</a></li>
+                                <li>Copy the output</li>
+                                <li>Open your xaeros waypoints file located at <code>.minecraft/XaeroWaypoints/&lt;server-name-ip&gt;/dim%0/mw$default_1.txt</code> in a text editor and paste it here</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

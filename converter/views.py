@@ -28,4 +28,8 @@ class VoxelMapToXaeroConverterView(FormView):
 
 
 class DownloadFileView(TemplateView):
-    template_name = 'document.html'
+    template_name = 'output.html'
+
+
+class InstructionsView(TemplateView):
+    template_name = 'instructions.html'
