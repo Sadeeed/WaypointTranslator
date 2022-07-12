@@ -19,12 +19,12 @@ class VoxelMapToXaeroConverterView(FormView):
         form = self.get_form(form_class)
         if form.is_valid():
             # messages.error(self.request, self.success_message)
-            waypoint_obj = form.save()
-            converted_waypoints = convert_to_xaero(waypoint_obj)
+            # waypoint_obj = form.save()
+            converted_waypoints, filepath = convert_to_xaero(request.FILES['file'])
             print(converted_waypoints)
             # return self.form_valid(form)
-            # return HttpResponse(converted_waypoints, content_type='text/plain')
-            return FileResponse(open(converted_waypoints, 'rb'), as_attachment=True)
+            return HttpResponse(converted_waypoints, content_type='text/plain')
+            # return FileResponse(open(filepath, 'rb'), as_attachment=True)
             # return render(request, 'output.html', {'converted_waypoints': converted_waypoints})
         else:
             return self.form_invalid(form)
