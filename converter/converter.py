@@ -1,6 +1,6 @@
 import os
 import random
-
+import io
 from django.conf import settings
 
 wp_voxel_list = []
@@ -8,22 +8,24 @@ wp_xaero_list = []
 
 
 def convert_to_xaero(file):
-    # import pdb;pdb.set_trace()
     # filename = file.file.name
     filename = file.name
-
-    file = os.path.join(settings.MEDIA_ROOT, filename)
-    file_path = f'{settings.MEDIA_ROOT}/{filename}_converted.txt'
+    # file = os.path.join(settings.MEDIA_ROOT, filename)
+    # file_path = f'{settings.MEDIA_ROOT}{filename}_converted.txt'
     out_txt = ''
-    with open(file) as fp:
-        for line in fp:
-            wp_voxel_list.append(line.strip('\n'))
+    for line in file:
+        line = line.decode()
+        wp_voxel_list.append(line.strip('\n'))
+    # with open(file) as fp:
+    #     for line in fp:
+    #         wp_voxel_list.append(line.strip('\n'))
 
     # Voxel
     # name:name,x:x,z:z,y:y,enabled:boolean,red:r,green:g,blue:b,suffix:suffix,world:world,dimensions:dimension#
 
     # Xaero
     # waypoint:name:initial:x:y:z:color:disabled:type:set:rotated_teleport:rotation_yaw
+    print(wp_voxel_list)
     for wp in wp_voxel_list[3:]:
         wp = wp.split(',')
         name = wp[0].split(':')[1]
@@ -43,4 +45,5 @@ def convert_to_xaero(file):
         # f = open(file_path, 'a')
         # f.write(out_txt)
         # f.close()
-    return out_txt, file_path
+    # return out_txt, file_path
+    return out_txt
