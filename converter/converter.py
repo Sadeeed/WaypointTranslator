@@ -8,7 +8,10 @@ wp_xaero_list = []
 
 
 def convert_to_xaero(file):
-    file = os.path.join(settings.MEDIA_ROOT, file.file.name)
+    # import pdb;pdb.set_trace()
+    filename = file.file.name
+    file = os.path.join(settings.MEDIA_ROOT, filename)
+    file_path = f'{settings.MEDIA_ROOT}/{filename}_converted.txt'
     out_txt = ''
     with open(file) as fp:
         for line in fp:
@@ -35,7 +38,7 @@ def convert_to_xaero(file):
             x_wp = f'waypoint:{name}:{name[0]}:{x}:{y}:{z}:{color}:true:0:gui.xaero_default:false:0:false\n'
             out_txt = out_txt + x_wp
 
-        # f = open(f'{file.file.name}_converted.txt', 'a')
-        # f.write(x_wp)
-        # f.close()
-    return out_txt
+        f = open(file_path, 'a')
+        f.write(out_txt)
+        f.close()
+    return file_path
