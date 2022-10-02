@@ -4,5 +4,18 @@
 {% block title %} Converted {% endblock %}
 
 {% block content %}
-    <p>{{ converted_waypoints }}</p>
+    <div class="mask d-flex align-items-center min-vh-100">
+        <div class="container h-300">
+            <div class="row d-flex justify-content-center align-items-center h-300">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px; background-color: #202020">
+                        <div class="card-body p-5" style="color: #FFFFFF;">
+                            <h3 class="text-center mb-5" style="color: #FFFFFF;">Converted Waypoints</h3>
+                            <p>{{ converted_waypoints }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
