@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %} VoxelMap to Xaeros {% endblock %}
 
@@ -10,7 +11,8 @@
                 <div class="col-12 col-md-6 cardOneBox">
                     <div class="card" style="border-radius: 15px; background-color: #202020">
                         <div class="card-body p-5" style="color: #FFFFFF;">
-                            <h3 class="text-center mb-5" style="color: #FFFFFF;">Convert Voxel Map Waypoints to Xaero's Minimap Format</h3>
+                            <h3 class="text-center mb-5" style="color: #FFFFFF;">Convert Voxel Map Waypoints to Xaero's
+                                Minimap Format</h3>
                             <p class="text-center">Upload your Voxel Map .points file</p>
                             <form id="form-import" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
@@ -30,11 +32,10 @@
                                 {% endif %}
 
                                 <div class="form-inline" style="text-align: center; margin-top: 10px">
-                                    {{ form.file }}
-                                </div>
-
-                                <div class="form-inline" style="text-align: center; margin-top: 10px">
-                                    <button id="import_button" type="submit" class="btn btn-primary">Upload</button>
+                                    <div class="input-group mb-3">
+                                        {% render_field form.file class="form-control" %}
+                                        <button class="btn btn-secondary" type="submit">Upload</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -43,12 +44,33 @@
                 <div class="col-12 col-md-6 cardTwoBox">
                     <div class="card" style="border-radius: 15px; background-color: #202020">
                         <div class="card-body p-5" style="color: #FFFFFF;">
-                            <textarea ></textarea>
-                           
+                            <textarea></textarea>
+{#                            <p class="text-center">Copy the converted waypoints below</p>#}
+{#                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>#}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block extraJs %}
+    <script>
+        let form = document.getElementById('form-import');
+        let textarea = document.querySelector('textarea');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let formData = new FormData(form);
+            fetch('{% url 'voxel_to_xaero' %}', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+                .then(data => {
+                    // parse text and pretty print
+                    textarea.value = data['converted_waypoints']
+                    console.log(data)
+                });
+        });
+    </script>
 {% endblock %}

@@ -1,3 +1,43 @@
-body{
-        background: red !important;
+body {
+    background-color: #181818;
+}
+
+:root {
+    --main-background-color: #181818;
+    --dark-background-color: #202020;
+    --secondary-text-color: #AAAAAA;
+    --light-primary-text-color: #FFFFFF;
+}
+
+.cardRow .card {
+    height: 100%;
+    min-height: 530px;
+}
+
+.cardTwoBox textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background: hsl(0deg 0% 18% / 88%);
+    resize: none;
+    color: #fff;
+
+}
+
+.cardTwoBox span {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background: hsl(0deg 0% 18% / 88%);
+    resize: none;
+    color: #fff;
+
+}
+
+.cardTwoBox textarea:focus {
+    border: none;
+    outline: none;
+    padding: 20px;
 }

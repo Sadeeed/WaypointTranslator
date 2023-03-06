@@ -24,7 +24,6 @@
   </head>
   <body>
     <!-- Header -->
-    {% include 'snippets/base_css.html' %}
     {% include 'snippets/header.html' %}
 
     <style type="text/css">
@@ -48,6 +47,6 @@
       integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
       crossorigin="anonymous"
     ></script>
-    {% block js %}{% endblock %}
+    {% block extraJs %}{% endblock %}
   </body>
 </html>
