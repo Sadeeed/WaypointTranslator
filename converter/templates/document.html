@@ -44,7 +44,13 @@
                 <div class="col-12 col-md-6 cardTwoBox">
                     <div class="card" style="border-radius: 15px; background-color: #202020">
                         <div class="card-body p-5" style="color: #FFFFFF;">
-                            <textarea></textarea>
+                            <button onclick="switchTab(event,'overworld')" class="tablink btn btn-secondary shadow-none" style="border-radius: .25rem .25rem 0rem 0rem;">Overworld</button>
+                            <button onclick="switchTab(event,'the_nether')" class="tablink btn btn-secondary shadow-none" style="border-radius: .25rem .25rem 0rem 0rem;">Nether</button>
+                            <button onclick="switchTab(event,'the_end')" class="tablink btn btn-secondary shadow-none" style="border-radius: .25rem .25rem 0rem 0rem;">End</button>
+
+                            <textarea id="overworld" class="tab" style="border-radius: 1px 10px 10px 10px;"></textarea>
+                            <textarea id="the_nether" class="tab" style="border-radius: 1px 10px 10px 10px; display: none;"></textarea>
+                            <textarea id="the_end" class="tab" style="border-radius: 1px 10px 10px 10px; display: none;"></textarea>
 {#                            <p class="text-center">Copy the converted waypoints below</p>#}
 {#                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>#}
                         </div>
@@ -58,7 +64,7 @@
 {% block extraJs %}
     <script>
         let form = document.getElementById('form-import');
-        let textarea = document.querySelector('textarea');
+        let textarea = document.getElementById('overworld');
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             let formData = new FormData(form);
@@ -68,9 +74,26 @@
             }).then(response => response.json())
                 .then(data => {
                     // parse text and pretty print
-                    textarea.value = data['converted_waypoints']
+                    var tabs = document.getElementsByClassName("tab");
+                    var converted_waypoints = data['converted_waypoints'];
+                    for (i=0;i<tabs.length; i++){
+                        if (converted_waypoints[tabs[i].id] != null){
+                            tabs[i].value = converted_waypoints[tabs[i].id];
+                        }
+                    }
                     console.log(data)
                 });
         });
+        function switchTab(event,tab){
+            var tabs = document.getElementsByClassName("tab");
+            var tablinks = document.getElementsByClassName("tablink");
+            for ( i = 0; i<tabs.length; i++){
+                if (tabs[i].id == tab) {
+                    tabs[i].style.display = "block";
+                    continue;
+                }
+                tabs[i].style.display = "none";
+            }
+        }
     </script>
 {% endblock %}
